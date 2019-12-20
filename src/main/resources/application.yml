@@ -1,0 +1,16 @@
+server:
+  port: 8989
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    jdbc-url: jdbc:postgresql://localhost:5432/postgres
+    test-on-borrow: true
+    validation-query: select 1 from dual
+  jackson:
+    date-format: "dd.MM.yyyy"
+
+jwt:
+  secret: application
