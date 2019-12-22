@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by Dev1 on 20.12.2019.
  */
+//TODO remove request mapping on controller
 @RestController
 @RequestMapping(path = "users")
 public class UserController {
