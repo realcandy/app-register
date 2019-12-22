@@ -1,6 +1,6 @@
 package com.paynet.controller;
 
-import com.paynet.entity.User;
+import com.paynet.entity.ApplicationUser;
 import com.paynet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +15,12 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public User registerUser(@RequestBody User user) {
+    public ApplicationUser registerUser(@RequestBody ApplicationUser user) {
         return userService.register(user);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public User updateUser(@PathVariable Integer id, @RequestBody User user) {
+    public ApplicationUser updateUser(@PathVariable Integer id, @RequestBody ApplicationUser user) {
         user.setId(id);
         return userService.update(user);
     }

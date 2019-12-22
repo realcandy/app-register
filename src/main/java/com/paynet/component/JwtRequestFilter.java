@@ -1,18 +1,19 @@
 package com.paynet.component;
 
 import com.paynet.entity.JwtToken;
-import com.paynet.entity.User;
 import com.paynet.service.JwtAuthenticationService;
-import com.paynet.service.UserService;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -32,27 +33,64 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtAuthenticationService jwtAuthenticationService;
+
     @Autowired
-    private UserService userService;
+    @Qualifier("applicationUserDetailsService")
+    private UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        final String authorizationHeader = httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION);
+        final String requestTokenHeader = httpServletRequest.getHeader("Authorization");
 
-        JwtToken jwtToken = null;
-        String login = null;
-        if (StringUtils.isEmpty(authorizationHeader) && authorizationHeader.startsWith("Bearer")) {
-            jwtToken = new JwtToken(authorizationHeader.substring(7));
-            login = jwtAuthenticationService.getClaimFromToken(jwtToken, Claims::getSubject);
-        } else
-            logger.warn("JWT Token does not begin with Bearer");
+        String username = null;
 
-        User user = userService.findUserByLogin(new User(login));
+        String jwtToken = null;
 
-        if (jwtAuthenticationService.isValid(user, jwtToken)) {
-            SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(user, null));
+
+        if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
+
+            jwtToken = requestTokenHeader.substring(7);
+
+            try {
+
+                 username = jwtAuthenticationService.getClaimFromToken(jwtToken, Claims::getSubject);
+
+            } catch (IllegalArgumentException e) {
+
+                System.out.println("Unable to get JWT Token");
+
+            } catch (ExpiredJwtException e) {
+
+                System.out.println("JWT Token has expired");
+
+            }
+
+        } else {
+
+            logger.warn("JWT Token does not begin with Bearer String");
+
         }
 
+
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+
+            if (jwtAuthenticationService.validate(jwtToken, userDetails)) {
+
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+
+                        userDetails, null, userDetails.getAuthorities());
+
+                usernamePasswordAuthenticationToken
+
+                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
+
+
+                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            }
+        }
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

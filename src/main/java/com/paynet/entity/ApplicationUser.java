@@ -5,20 +5,20 @@ import java.util.Date;
 /**
  * Created by Dev1 on 20.12.2019.
  */
-public class User {
+public class ApplicationUser {
     private Integer id;
     private String firstName;
     private String lastName;
     private String password;
     private String address;
     private Date dateBirth;
-    private String login;
+    private String username;
 
-    public User() {
+    public ApplicationUser() {
     }
 
-    public User(String login){
-        this.login = login;
+    public ApplicationUser(String username){
+        this.username = username;
     }
 
     public Integer getId() {
@@ -69,11 +69,11 @@ public class User {
         this.dateBirth = dateBirth;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

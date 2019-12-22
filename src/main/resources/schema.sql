@@ -24,12 +24,12 @@ create table users
 	password varchar(100) not null,
 	address varchar(50),
 	date_birth time not null,
-	login varchar(50) not null
+	username varchar(50) not null
 )
 ;
 
 create unique index users_login_uindex
-	on users (login)
+	on users (username)
 ;
 
 create sequence users_id_seq;

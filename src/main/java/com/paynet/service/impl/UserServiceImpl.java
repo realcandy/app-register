@@ -1,6 +1,6 @@
 package com.paynet.service.impl;
 
-import com.paynet.entity.User;
+import com.paynet.entity.ApplicationUser;
 import com.paynet.repository.UserRepository;
 import com.paynet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,25 +18,25 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
     @Override
-    public User register(User user) {
+    public ApplicationUser register(ApplicationUser user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return userRepository.findUser(user);
     }
 
     @Override
-    public User update(User user) {
+    public ApplicationUser update(ApplicationUser user) {
         userRepository.update(user);
         return userRepository.findUser(user);
     }
 
     @Override
-    public User findUser(User user) {
+    public ApplicationUser findUser(ApplicationUser user) {
         return userRepository.findUser(user);
     }
 
     @Override
-    public User findUserByLogin(User user) {
+    public ApplicationUser findUserByLogin(ApplicationUser user) {
         return userRepository.findUserByLogin(user);
     }
 }

@@ -1,16 +1,16 @@
 package com.paynet.service;
 
-import com.paynet.entity.User;
+import com.paynet.entity.ApplicationUser;
 
 /**
  * Created by Dev1 on 20.12.2019.
  */
 public interface UserService {
-    User register(User user);
+    ApplicationUser register(ApplicationUser user);
 
-    User update(User user);
+    ApplicationUser update(ApplicationUser user);
 
-    User findUser(User user);
+    ApplicationUser findUser(ApplicationUser user);
 
-    User findUserByLogin(User user);
+    ApplicationUser findUserByLogin(ApplicationUser user);
 }
