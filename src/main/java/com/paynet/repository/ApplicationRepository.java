@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Mapper
 public interface ApplicationRepository{
-    @Select("SELECT id as id, title as title, text as text from applications")
+    @Select("SELECT id as id, title as title, text as text from applications order by date_create")
     List<Application> findAll();
 
     @Results({
@@ -30,6 +30,9 @@ public interface ApplicationRepository{
 
     @UpdateProvider(ApplicationUpdateProvider.class)
     int update(Application application);
+
+    @Delete("delete from applications where id = #{id}")
+    void delete(Application application);
 
     @Results({
             @Result(property = "id", column = "c.id"),

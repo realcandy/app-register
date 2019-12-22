@@ -38,4 +38,9 @@ public class ApplicationServiceImpl implements ApplicationService{
     public Application find(Application application) {
         return applicationRepository.findOne(application);
     }
+
+    @Override
+    public void delete(Application application) {
+        applicationRepository.delete(application);
+    }
 }

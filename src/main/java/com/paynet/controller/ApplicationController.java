@@ -36,4 +36,10 @@ public class ApplicationController {
     public Application findApplication(@RequestBody ApplicationRequest request, @PathVariable Long id){
         return applicationService.find(request.toApplication(id));
     }
+
+    @RequestMapping(value = "/applications{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteApplication(@RequestBody ApplicationRequest request, @PathVariable Long id){
+        applicationService.delete(request.toApplication(id));
+        return ResponseEntity.ok().build();
+    }
 }
