@@ -1,6 +1,7 @@
 package com.paynet.controller;
 
 import com.paynet.model.JwtRequest;
+import com.paynet.model.JwtResponse;
 import com.paynet.service.JwtAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,6 +40,6 @@ public class JwtAuthenticationController {
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
 
-        return ResponseEntity.ok(jwtAuthenticationService.generate(userDetails));
+        return ResponseEntity.ok(new JwtResponse(jwtAuthenticationService.generate(userDetails)));
     }
 }
