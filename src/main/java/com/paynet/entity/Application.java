@@ -1,5 +1,7 @@
 package com.paynet.entity;
 
+import java.util.List;
+
 /**
  * Created by Dev1 on 20.12.2019.
  */
@@ -7,6 +9,7 @@ public class Application {
     private Long id;
     private String text;
     private String title;
+    private List<Comment> comments;
 
     public Application() {
     }
@@ -15,6 +18,14 @@ public class Application {
         this.id = id;
         this.text = text;
         this.title = title;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public Long getId() {

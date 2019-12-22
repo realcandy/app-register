@@ -1,6 +1,8 @@
 package com.paynet.controller;
 
+import com.paynet.entity.Application;
 import com.paynet.entity.Comment;
+import com.paynet.model.CommentApplicationRequest;
 import com.paynet.model.CommentRequest;
 import com.paynet.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ public class CommentController {
     private CommentService commentService;
 
     @RequestMapping(value = "/comments", method = RequestMethod.POST)
-    public Comment saveComment(@RequestBody CommentRequest request){
-        return commentService.save(request.toComment());
+    public Comment saveComment(@RequestBody CommentApplicationRequest request){
+        return commentService.save(request.toApplication());
     }
 }

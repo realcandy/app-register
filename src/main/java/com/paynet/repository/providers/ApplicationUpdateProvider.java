@@ -6,7 +6,7 @@ import org.apache.ibatis.jdbc.SQL;
 
 public class ApplicationUpdateProvider implements ProviderMethodResolver{
 
-    public static String updateApplication(Application application) {
+    public static String update(Application application) {
         return new SQL() {
             {
                 UPDATE("applications");

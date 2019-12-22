@@ -54,6 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users").permitAll()
                 .antMatchers("/users/").permitAll()
                 .antMatchers("/authenticate").permitAll()
+                .antMatchers("/applications").permitAll()
+                .antMatchers("/comments").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
