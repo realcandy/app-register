@@ -37,7 +37,7 @@ public class ApplicationController {
         return applicationService.find(request.toApplication(id));
     }
 
-    @RequestMapping(value = "/applications{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/applications/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteApplication(@RequestBody ApplicationRequest request, @PathVariable Long id){
         applicationService.delete(request.toApplication(id));
         return ResponseEntity.ok().build();
