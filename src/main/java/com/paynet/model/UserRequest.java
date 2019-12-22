@@ -1,36 +1,16 @@
-package com.paynet.entity;
+package com.paynet.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.paynet.entity.ApplicationUser;
 
 import java.util.Date;
 
-/**
- * Created by Dev1 on 20.12.2019.
- */
-public class ApplicationUser {
-    private Integer id;
+public class UserRequest {
     private String firstName;
     private String lastName;
-    @JsonIgnore
     private String password;
     private String address;
     private Date dateBirth;
     private String username;
-
-    public ApplicationUser() {
-    }
-
-    public ApplicationUser(String username){
-        this.username = username;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -78,5 +58,23 @@ public class ApplicationUser {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public ApplicationUser toUser(){
+        ApplicationUser applicationUser = new ApplicationUser();
+        applicationUser.setPassword(password);
+        applicationUser.setAddress(address);
+        applicationUser.setDateBirth(dateBirth);
+        applicationUser.setFirstName(firstName);
+        applicationUser.setLastName(lastName);
+        applicationUser.setUsername(username);
+
+        return applicationUser;
+    }
+
+    public ApplicationUser toUser(Integer id){
+        ApplicationUser applicationUser = toUser();
+        applicationUser.setId(id);
+        return applicationUser;
     }
 }

@@ -1,6 +1,7 @@
 package com.paynet.repository;
 
 import com.paynet.entity.ApplicationUser;
+import com.paynet.repository.providers.ApplicationUserUpdateProvider;
 import org.apache.ibatis.annotations.*;
 
 /**
@@ -18,6 +19,6 @@ public interface UserRepository {
     @Select("select id as id, username, first_name as firstName, last_name as lastName, date_birth as dateBirth, address, password from users where username = #{username}")
     ApplicationUser findUserByLogin(ApplicationUser user);
 
-    @Update("update users set first_name = #{firstName}, last_name = #{lastName}, address=#{address}, date_birth = #{dateBirth} where id = #{id}")
+    @UpdateProvider(ApplicationUserUpdateProvider.class)
     void update(ApplicationUser user);
 }
