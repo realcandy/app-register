@@ -3,6 +3,7 @@ package com.paynet.service.impl;
 import com.paynet.entity.ApplicationUser;
 import com.paynet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,7 +21,10 @@ public class ApplicationUserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return new ApplicationUserDetails(userService.findUserByLogin(new ApplicationUser(s)));
+        ApplicationUser user = userService.findUserByLogin(s);
+        if (user == null)
+            return null;
+        return new ApplicationUserDetails(user);
     }
 
     public class ApplicationUserDetails extends org.springframework.security.core.userdetails.User {

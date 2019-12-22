@@ -12,6 +12,7 @@ import java.util.Optional;
  * Created by Dev1 on 20.12.2019.
  */
 //TODO remove request mapping on controller
+    //TODO validation on null values
 @RestController
 @RequestMapping(path = "users")
 public class UserController {
@@ -23,7 +24,7 @@ public class UserController {
         return userService.save(request.toUser());
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
     public ApplicationUser updateUser(@PathVariable Integer id, @RequestBody UserRequest request) {
         return userService.update(request.toUser(id));
     }

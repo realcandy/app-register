@@ -1,6 +1,7 @@
 package com.paynet.repository;
 
 import com.paynet.entity.Application;
+import com.paynet.entity.ApplicationUser;
 import com.paynet.entity.Comment;
 import com.paynet.repository.providers.ApplicationUpdateProvider;
 import org.apache.ibatis.annotations.*;
@@ -19,14 +20,18 @@ public interface ApplicationRepository{
             @Result(property = "id", column = "id"),
             @Result(property = "title", column = "title"),
             @Result(property = "text", column = "text"),
+            @Result(property = "dateCreate", column = "date_create"),
             @Result(property = "comments", javaType = List.class, column = "comment_id", many = @Many(select = "findCommentsByApplication"))
     })
     @Select("select * from applications where id = #{id}")
     Application findOne(Application application);
 
-    @Insert("insert into applications (title, text) values (#{title}, #{text})")
+    @Insert("insert into applications (title, text, date_create) values (#{title}, #{text}, #{dateCreate})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     void insert(Application application);
+
+    @Insert("insert into applications_users (application_id, user_id) values (#{id}, #{user.id})")
+    void insertApplicationUser(Application application);
 
     @UpdateProvider(ApplicationUpdateProvider.class)
     int update(Application application);

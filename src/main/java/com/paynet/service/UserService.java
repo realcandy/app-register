@@ -12,5 +12,5 @@ public interface UserService {
 
     ApplicationUser findUser(ApplicationUser user);
 
-    ApplicationUser findUserByLogin(ApplicationUser user);
+    ApplicationUser findUserByLogin(String login);
 }

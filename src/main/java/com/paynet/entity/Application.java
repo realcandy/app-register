@@ -1,5 +1,6 @@
 package com.paynet.entity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,6 +11,8 @@ public class Application {
     private String text;
     private String title;
     private List<Comment> comments;
+    private ApplicationUser user;
+    private Date dateCreate;
 
     public Application() {
     }
@@ -50,5 +53,21 @@ public class Application {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public ApplicationUser getUser() {
+        return user;
+    }
+
+    public void setUser(ApplicationUser user) {
+        this.user = user;
+    }
+
+    public Date getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(Date dateCreate) {
+        this.dateCreate = dateCreate;
     }
 }
