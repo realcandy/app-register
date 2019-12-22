@@ -9,4 +9,8 @@ import java.util.List;
  */
 public interface ApplicationService {
     List<Application> getApplications();
+
+    Application save(Application application);
+
+    Application update(Application application);
 }

@@ -20,4 +20,16 @@ public class ApplicationServiceImpl implements ApplicationService{
     public List<Application> getApplications() {
         return applicationRepository.getApplications();
     }
+
+    @Override
+    public Application save(Application application) {
+        applicationRepository.insertApplication(application);
+        return applicationRepository.findApplication(application);
+    }
+
+    @Override
+    public Application update(Application application) {
+        applicationRepository.updateApplication(application);
+        return applicationRepository.findApplication(application);
+    }
 }

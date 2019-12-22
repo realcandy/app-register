@@ -8,6 +8,15 @@ public class Application {
     private String text;
     private String title;
 
+    public Application() {
+    }
+
+    public Application(Long id, String text, String title) {
+        this.id = id;
+        this.text = text;
+        this.title = title;
+    }
+
     public Long getId() {
         return id;
     }
