@@ -14,4 +14,6 @@ public interface ApplicationService {
     Application save(Application application);
 
     Application update(Application application);
+
+    Application find(Application application);
 }

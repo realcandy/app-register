@@ -4,6 +4,8 @@ import com.paynet.entity.Application;
 import com.paynet.entity.Comment;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface CommentRepository {
 

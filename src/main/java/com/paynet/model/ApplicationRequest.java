@@ -31,6 +31,10 @@ public class ApplicationRequest {
         this.text = text;
     }
 
+    public Application toApplication(long id){
+        return new Application(id, text, title);
+    }
+
     public Application toApplication(){
         return new Application(id, text, title);
     }

@@ -5,10 +5,7 @@ import com.paynet.model.ApplicationRequest;
 import com.paynet.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,9 +27,13 @@ public class ApplicationController {
         return applicationService.save(request.toApplication());
     }
 
-    @RequestMapping(value = "/applications/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/applications/{id}", method = RequestMethod.PATCH)
     public Application updateApplication(@RequestBody ApplicationRequest request){
         return applicationService.update(request.toApplication());
     }
 
+    @RequestMapping(value = "/applications/{id}", method = RequestMethod.POST)
+    public Application findApplication(@RequestBody ApplicationRequest request, @PathVariable Long id){
+        return applicationService.find(request.toApplication(id));
+    }
 }
