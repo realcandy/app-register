@@ -18,18 +18,18 @@ public class ApplicationServiceImpl implements ApplicationService{
 
     @Override
     public List<Application> getApplications() {
-        return applicationRepository.getApplications();
+        return applicationRepository.findAll();
     }
 
     @Override
     public Application save(Application application) {
-        applicationRepository.insertApplication(application);
-        return applicationRepository.findApplication(application);
+        applicationRepository.insert(application);
+        return applicationRepository.findOne(application);
     }
 
     @Override
     public Application update(Application application) {
-        applicationRepository.updateApplication(application);
-        return applicationRepository.findApplication(application);
+        applicationRepository.update(application);
+        return applicationRepository.findOne(application);
     }
 }

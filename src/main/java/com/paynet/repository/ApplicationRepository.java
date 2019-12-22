@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface ApplicationRepository{
     @Select("SELECT id as id, title as title, text as text from applications")
-    List<Application> getApplications();
+    List<Application> findAll();
 
     @Results({
             @Result(property = "id", column = "id"),
@@ -20,12 +20,12 @@ public interface ApplicationRepository{
             @Result(property = "text", column = "text")
     })
     @Select("select * from applications where id = #{id}")
-    Application findApplication(Application application);
+    Application findOne(Application application);
 
     @Insert("insert into applications (title, text) values (#{title}, #{text})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
-    void insertApplication(Application application);
+    void insert(Application application);
 
     @UpdateProvider(ApplicationUpdateProvider.class)
-    int updateApplication(Application application);
+    int update(Application application);
 }

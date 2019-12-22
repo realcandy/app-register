@@ -6,7 +6,7 @@ import com.paynet.entity.ApplicationUser;
  * Created by Dev1 on 20.12.2019.
  */
 public interface UserService {
-    ApplicationUser register(ApplicationUser user);
+    ApplicationUser save(ApplicationUser user);
 
     ApplicationUser update(ApplicationUser user);
 

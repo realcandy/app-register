@@ -18,21 +18,21 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
     @Override
-    public ApplicationUser register(ApplicationUser user) {
+    public ApplicationUser save(ApplicationUser user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return userRepository.findUser(user);
+        userRepository.insert(user);
+        return userRepository.findOne(user);
     }
 
     @Override
     public ApplicationUser update(ApplicationUser user) {
         userRepository.update(user);
-        return userRepository.findUser(user);
+        return userRepository.findOne(user);
     }
 
     @Override
     public ApplicationUser findUser(ApplicationUser user) {
-        return userRepository.findUser(user);
+        return userRepository.findOne(user);
     }
 
     @Override
