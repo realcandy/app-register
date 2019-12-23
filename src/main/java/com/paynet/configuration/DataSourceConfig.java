@@ -22,8 +22,6 @@ public class DataSourceConfig {
     public DataSource getDataSource() {
         DataSource dataSource = DataSourceBuilder
                 .create()
-                .username("postgres")
-                .password("postgres")
                 .build();
         return dataSource;
     }
