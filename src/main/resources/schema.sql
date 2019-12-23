@@ -1,6 +1,3 @@
-create sequence users_id_seq
-;
-
 create table applications
 (
 	id serial not null
@@ -14,7 +11,9 @@ create table applications
 
 create table users
 (
-	id serial not null,
+	id serial not null
+	  	constraint users_id_pk
+			  primary key,
 	first_name varchar(50) not null,
 	last_name varchar(50) not null,
 	password varchar(100) not null,
@@ -24,14 +23,10 @@ create table users
 )
 ;
 
-create unique index users_username_uindex
-	on users (username)
-;
-
 create table comments
 (
 	id serial not null
-		constraint comments_pkey
+		constraint comments_id_pk
 			primary key,
 	text varchar(50) not null
 )
@@ -39,23 +34,34 @@ create table comments
 
 create table applications_comments
 (
-	application_id integer not null,
+	application_id integer not null
+		constraint applications_comments_applications_id_fk
+			references applications,
 	comment_id integer not null
+		constraint applications_comments_comments_id_fk
+			references comments
 )
 ;
 
 create table applications_users
 (
-	application_id integer not null,
+	application_id integer not null
+		constraint applications_users_applications_id_fk
+			references applications,
 	user_id integer not null
+		constraint applications_users_users_id_fk
+			references users
 )
 ;
 
--- auto-generated definition
--- No source text available
-create SEQUENCE applications_id_seq;
--- auto-generated definition
-CREATE SEQUENCE users_id_seq;
--- auto-generated definition
--- No source text available
-create sequence comments_id_seq;
+CREATE SEQUENCE public.applications_id_seq NO MINVALUE NO MAXVALUE NO CYCLE;
+ALTER TABLE public.applications ALTER COLUMN id SET DEFAULT nextval('public.applications_id_seq');
+ALTER SEQUENCE public.applications_id_seq OWNED BY public.applications.id;
+
+CREATE SEQUENCE public.users_id_seq NO MINVALUE NO MAXVALUE NO CYCLE;
+ALTER TABLE public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq');
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+CREATE SEQUENCE public.comments_id_seq NO MINVALUE NO MAXVALUE NO CYCLE;
+ALTER TABLE public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq');
+ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
