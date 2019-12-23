@@ -1,7 +1,6 @@
 package com.paynet.repository.impl;
 
 import com.paynet.entity.Application;
-import com.paynet.entity.ApplicationUser;
 import com.paynet.entity.Comment;
 import com.paynet.repository.ApplicationRepository;
 import org.apache.ibatis.session.SqlSession;

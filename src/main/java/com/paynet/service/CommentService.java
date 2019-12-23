@@ -7,5 +7,5 @@ import com.paynet.entity.Comment;
  * Created by Dev1 on 20.12.2019.
  */
 public interface CommentService {
-    Comment save(Application application);
+    Comment save(Comment comment, Application application);
 }

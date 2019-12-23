@@ -12,7 +12,7 @@ public interface CommentRepository {
     void insert(Comment comment);
 
     @Insert("insert into applications_comments (application_id, comment_id) values (#{application.id}, #{comment.id})")
-    void insertCommentApplication(@Param("application") Application application, @Param("comment") Comment comment);
+    void insertCommentApplication(@Param("comment") Comment comment, @Param("application") Application application);
 
     @Results({
             @Result(property = "id", column = "id"),

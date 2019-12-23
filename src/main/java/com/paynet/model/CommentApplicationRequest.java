@@ -28,8 +28,10 @@ public class CommentApplicationRequest {
     public Application toApplication() {
         Application application = new Application();
         application.setId(this.application.getId());
-        application.setComments(Collections.singletonList(new Comment(comment.getText())));
-
         return application;
+    }
+
+    public Comment toComment() {
+        return new Comment(comment.getText());
     }
 }

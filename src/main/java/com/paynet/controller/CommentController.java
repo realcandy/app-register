@@ -18,7 +18,7 @@ public class CommentController {
     private CommentService commentService;
 
     @RequestMapping(value = "/comments", method = RequestMethod.POST)
-    public Comment saveComment(@RequestBody CommentApplicationRequest request){
-        return commentService.save(request.toApplication());
+    public Comment saveComment(@RequestBody CommentApplicationRequest request) {
+        return commentService.save(request.toComment(), request.toApplication());
     }
 }
