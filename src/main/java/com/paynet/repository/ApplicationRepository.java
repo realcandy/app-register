@@ -5,25 +5,28 @@ import com.paynet.entity.ApplicationUser;
 import com.paynet.entity.Comment;
 import com.paynet.repository.providers.ApplicationUpdateProvider;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.IntegerTypeHandler;
+import org.apache.ibatis.type.LongTypeHandler;
 
 import java.util.List;
 
 /**
  * Created by Dev1 on 20.12.2019.
  */
-@Mapper
 public interface ApplicationRepository{
     @Select("SELECT id as id, title as title, text as text from applications order by date_create")
     List<Application> findAll();
 
+
+    @Select("select * from applications a, applications_users u where a.id = u.application_id and id = #{id}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "title", column = "title"),
             @Result(property = "text", column = "text"),
             @Result(property = "dateCreate", column = "date_create"),
-            @Result(property = "comments", javaType = List.class, column = "comment_id", many = @Many(select = "findCommentsByApplication"))
+            @Result(property = "comments", javaType = List.class, column = "a.comment_id", many = @Many(select = "findCommentsByApplication")),
+            @Result(property = "user", javaType = ApplicationUser.class, column = "user_id", one = @One(select = "findUserByApplication"))
     })
-    @Select("select * from applications where id = #{id}")
     Application findOne(Application application);
 
     @Insert("insert into applications (title, text, date_create) values (#{title}, #{text}, #{dateCreate})")
@@ -45,4 +48,7 @@ public interface ApplicationRepository{
     })
     @Select("select * from applications_comments a, comments c where a.comment_id = c.id and a.application_id = #{id}")
     List<Comment> findCommentsByApplication(Application application);
+
+    @Select("select user_id as id from applications_users where application_id = #{id}")
+    ApplicationUser findUserByApplication(Application application);
 }

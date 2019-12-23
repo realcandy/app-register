@@ -4,8 +4,10 @@ import com.paynet.aspect.AuthorizeAction;
 import com.paynet.entity.Application;
 import com.paynet.entity.ApplicationUser;
 import com.paynet.repository.ApplicationRepository;
+import com.paynet.repository.impl.ApplicationRepositoryImpl;
 import com.paynet.service.ApplicationService;
 import com.paynet.service.UserService;
+import com.paynet.util.SecurityContextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,7 @@ import java.util.List;
  * Created by Dev1 on 20.12.2019.
  */
 @Service
-public class ApplicationServiceImpl implements ApplicationService{
+public class ApplicationServiceImpl implements ApplicationService {
     @Autowired
     private UserService userService;
 
@@ -30,12 +32,13 @@ public class ApplicationServiceImpl implements ApplicationService{
         return applicationRepository.findAll();
     }
 
+    @AuthorizeAction
     @Transactional
     @Override
     public Application save(Application application) {
         application.setDateCreate(new Date());
+        application.setUser(userService.findUserByLogin(SecurityContextUtils.getUsername()));
         applicationRepository.insert(application);
-        applicationRepository.insertApplicationUser(application);
         return applicationRepository.findOne(application);
     }
 
