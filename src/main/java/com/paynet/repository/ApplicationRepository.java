@@ -22,8 +22,7 @@ public interface ApplicationRepository{
             @Result(property = "title", column = "title"),
             @Result(property = "text", column = "text"),
             @Result(property = "dateCreate", column = "date_create"),
-            @Result(property = "comments", javaType = List.class, column = "a.comment_id", many = @Many(select = "findCommentsByApplication")),
-            @Result(property = "user", javaType = ApplicationUser.class, column = "user_id", one = @One(select = "findUserByApplication"))
+            @Result(property = "comments", javaType = List.class, column = "a.comment_id", many = @Many(select = "findCommentsByApplication"))
     })
     Application findOne(Application application);
 
@@ -46,7 +45,4 @@ public interface ApplicationRepository{
     })
     @Select("select * from applications_comments a, comments c where a.comment_id = c.id and a.application_id = #{id}")
     List<Comment> findCommentsByApplication(Application application);
-
-    @Select("select user_id as id from applications_users where application_id = #{id}")
-    ApplicationUser findUserByApplication(Application application);
 }

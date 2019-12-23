@@ -72,13 +72,6 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         }
     }
 
-    @Override
-    public ApplicationUser findUserByApplication(Application application) {
-        try (SqlSession session = sqlSessionFactory.openSession()){
-            return getMapper(session).findUserByApplication(application);
-        }
-    }
-
     private ApplicationRepository getMapper(SqlSession session){
         return session.getMapper(ApplicationRepository.class);
     }

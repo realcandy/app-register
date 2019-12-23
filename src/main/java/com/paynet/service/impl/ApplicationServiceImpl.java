@@ -29,7 +29,11 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.findAll();
     }
 
-    @AuthorizeAction
+    @Override
+    public Application find(Application application) {
+        return applicationRepository.findOne(application);
+    }
+
     @Transactional
     @Override
     public Application save(Application application) {
@@ -46,11 +50,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.findOne(application);
     }
 
-    @Override
-    public Application find(Application application) {
-        return applicationRepository.findOne(application);
-    }
-
+    @AuthorizeAction
     @Override
     public void delete(Application application) {
         applicationRepository.delete(application);
