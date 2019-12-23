@@ -54,14 +54,14 @@ create table applications_users
 )
 ;
 
-CREATE SEQUENCE public.applications_id_seq NO MINVALUE NO MAXVALUE NO CYCLE;
+--CREATE SEQUENCE public.applications_id_seq NO MINVALUE NO MAXVALUE NO CYCLE;
 ALTER TABLE public.applications ALTER COLUMN id SET DEFAULT nextval('public.applications_id_seq');
 ALTER SEQUENCE public.applications_id_seq OWNED BY public.applications.id;
 
-CREATE SEQUENCE public.users_id_seq NO MINVALUE NO MAXVALUE NO CYCLE;
+--CREATE SEQUENCE public.users_id_seq NO MINVALUE NO MAXVALUE NO CYCLE;
 ALTER TABLE public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq');
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
-CREATE SEQUENCE public.comments_id_seq NO MINVALUE NO MAXVALUE NO CYCLE;
+--CREATE SEQUENCE public.comments_id_seq NO MINVALUE NO MAXVALUE NO CYCLE;
 ALTER TABLE public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq');
 ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
