@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "be0d1f9c-06bb-4684-b006-11e7c5f4db1d",
+		"_postman_id": "4ba378db-3be3-41e9-aac2-14d9b6d8230e",
 		"name": "http://localhost:8989",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,13 @@
 			"name": "List Applications",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZXkiLCJpYXQiOjE1NzcwMzEzNzcsImV4cCI6MTU3NzA0OTM3N30.CRF9aeRVYZt7LyfQORZMLOowmkYPGTZH3_uigQFCJcvsLbdrdx98KEVxGefJ9C_agyyaouE_d4dQTlpMoMSrNA",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
@@ -29,7 +35,7 @@
 			"response": []
 		},
 		{
-			"name": "Save customer",
+			"name": "User Save",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -42,7 +48,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"firstName\" : \"Andrey\",\n\t\"lastName\" : \"Pak\",\n\t\"address\" : \"Sergeli\",\n\t\"dateBirth\" : \"20.01.1996\",\n\t\"password\" : \"1234\"\n}"
+					"raw": "{\n\t\"firstName\" : \"Andrey\",\n\t\"lastName\" : \"Pak\",\n\t\"address\" : \"Sergeli\",\n\t\"dateBirth\" : \"20.01.1996\",\n\t\"password\" : \"1234\",\n\t\"username\" : \"23\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8989/users/",
@@ -60,7 +66,221 @@
 			"response": []
 		},
 		{
-			"name": "Update",
+			"name": "User Update",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmQiLCJpYXQiOjE1NzcwNTEwMTQsImV4cCI6MTU3NzA2OTAxNH0.4kz5gTnCmaWEqChHZZTzkY3ewMJB_XAcsIsU7EmBSdb2ELwsspru51geQir6kfdQgtqeioUNIBjqtFRrq7hf6g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Sergei\",\n    \"lastName\": \"Ivanov\",\n    \"address\": \"Tashkent\",\n    \"dateBirth\": \"01.01.2008\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8989/users/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"users",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Application Update",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmQiLCJpYXQiOjE1NzcwNTQwMzgsImV4cCI6MTU3NzA3MjAzOH0.o0l-LHKoC3DiREdyyeQ2eiFTmK8ylrE_uwJ1gOtGsAmNIEmB8nL2a1hHsF1FU9YOWm9Fr6-8R_KgBm9KalN3xg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 6,\n    \"text\": \"Application text 2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8989/applications/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"applications",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Application Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmQiLCJpYXQiOjE1NzcwNTIxNDQsImV4cCI6MTU3NzA3MDE0NH0.aJ9sYk7kt22ChHt-wTMGlLj21sHWrcDNffOV4jV2GHQTRaukvQviGR9WBOGRCEEZ9Og0e75L1mDhdZWZJsqA6Q"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 6,\n    \"text\": \"Application text 2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8989/applications/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"applications",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Application Update Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZXkiLCJpYXQiOjE1NzcwMzYzMzMsImV4cCI6MTU3NzA1NDMzM30.8KSfXj0g2cQradP9MAK8duwAgzmzwouX1GU9LqewqmMv-QSyYtfaIW4HBkTYGxEuobNm2JTubz1eWgh4aKq97Q",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 6\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8989/applications/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"applications",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Application Save",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZXkiLCJpYXQiOjE1NzcwMzYzMzMsImV4cCI6MTU3NzA1NDMzM30.8KSfXj0g2cQradP9MAK8duwAgzmzwouX1GU9LqewqmMv-QSyYtfaIW4HBkTYGxEuobNm2JTubz1eWgh4aKq97Q",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Application Title\",\n    \"text\" : \"Application text\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8989/applications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"applications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment Save",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZXkiLCJpYXQiOjE1NzcwMzYzMzMsImV4cCI6MTU3NzA1NDMzM30.8KSfXj0g2cQradP9MAK8duwAgzmzwouX1GU9LqewqmMv-QSyYtfaIW4HBkTYGxEuobNm2JTubz1eWgh4aKq97Q"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"application\" : {\n    \t\"id\" : 6\n    },\n    \"comment\" : \n    \t{\n    \t\t\"text\" : \"123213\"\n    \t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8989/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -73,18 +293,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Andreyyyyy\",\n    \"lastName\": \"Pak\",\n    \"password\": \"$2a$10$VWn8z4R1Tq/DlvLFiSvotunFJtX87z28iH0q1aqT6IneRfmsUupK6\",\n    \"address\": \"Sergeli\",\n    \"dateBirth\": \"31.12.1969\"\n}"
+					"raw": "{\n    \"username\" : \"and\",\n    \"password\" : \"1234\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8989/users/6",
+					"raw": "http://localhost:8989/authenticate",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8989",
 					"path": [
-						"users",
-						"6"
+						"authenticate"
 					]
 				}
 			},
