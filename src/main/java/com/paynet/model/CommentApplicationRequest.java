@@ -3,8 +3,6 @@ package com.paynet.model;
 import com.paynet.entity.Application;
 import com.paynet.entity.Comment;
 
-import java.util.Collections;
-
 public class CommentApplicationRequest {
     private CommentRequest comment;
     private ApplicationRequest application;

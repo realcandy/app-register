@@ -1,7 +1,6 @@
 package com.paynet.repository;
 
 import com.paynet.entity.Application;
-import com.paynet.entity.ApplicationUser;
 import com.paynet.entity.Comment;
 import com.paynet.repository.providers.ApplicationUpdateProvider;
 import org.apache.ibatis.annotations.*;
