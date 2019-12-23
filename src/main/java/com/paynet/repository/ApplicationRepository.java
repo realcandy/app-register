@@ -5,8 +5,6 @@ import com.paynet.entity.ApplicationUser;
 import com.paynet.entity.Comment;
 import com.paynet.repository.providers.ApplicationUpdateProvider;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.IntegerTypeHandler;
-import org.apache.ibatis.type.LongTypeHandler;
 
 import java.util.List;
 

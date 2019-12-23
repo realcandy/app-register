@@ -3,7 +3,6 @@ package com.paynet.service.impl;
 import com.paynet.entity.ApplicationUser;
 import com.paynet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

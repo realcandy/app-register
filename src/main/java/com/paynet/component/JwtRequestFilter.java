@@ -1,6 +1,5 @@
 package com.paynet.component;
 
-import com.paynet.entity.JwtToken;
 import com.paynet.service.JwtAuthenticationService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

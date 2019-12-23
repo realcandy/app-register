@@ -1,20 +1,17 @@
 package com.paynet.model;
 
 import com.paynet.entity.Application;
-import com.paynet.entity.ApplicationUser;
-
-import java.nio.file.attribute.UserPrincipal;
 
 public class ApplicationRequest {
-    private Long id;
+    private Integer id;
     private String title;
     private String text;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,7 +31,7 @@ public class ApplicationRequest {
         this.text = text;
     }
 
-    public Application toApplication(long id){
+    public Application toApplication(Integer id){
         Application application = toApplication();
         application.setId(id);
         return application;

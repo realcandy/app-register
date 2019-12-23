@@ -2,14 +2,11 @@ package com.paynet.service.impl;
 
 import com.paynet.aspect.AuthorizeAction;
 import com.paynet.entity.Application;
-import com.paynet.entity.ApplicationUser;
 import com.paynet.repository.ApplicationRepository;
-import com.paynet.repository.impl.ApplicationRepositoryImpl;
 import com.paynet.service.ApplicationService;
 import com.paynet.service.UserService;
 import com.paynet.util.SecurityContextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -3,7 +3,6 @@ package com.paynet.aspect;
 import com.paynet.entity.Application;
 import com.paynet.entity.ApplicationUser;
 import com.paynet.repository.ApplicationRepository;
-import com.paynet.repository.UserRepository;
 import com.paynet.service.impl.ApplicationUserDetailsServiceImpl;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;

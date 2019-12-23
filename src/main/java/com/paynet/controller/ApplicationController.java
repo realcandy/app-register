@@ -5,10 +5,8 @@ import com.paynet.model.ApplicationRequest;
 import com.paynet.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.attribute.UserPrincipal;
 import java.util.List;
 
 /**
@@ -35,12 +33,12 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/applications/{id}", method = RequestMethod.POST)
-    public Application findApplication(@RequestBody ApplicationRequest request, @PathVariable Long id){
+    public Application findApplication(@RequestBody ApplicationRequest request, @PathVariable Integer id){
         return applicationService.find(request.toApplication(id));
     }
 
     @RequestMapping(value = "/applications/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteApplication(@RequestBody ApplicationRequest request, @PathVariable Long id){
+    public ResponseEntity deleteApplication(@RequestBody ApplicationRequest request, @PathVariable Integer id){
         applicationService.delete(request.toApplication(id));
         return ResponseEntity.ok().build();
     }

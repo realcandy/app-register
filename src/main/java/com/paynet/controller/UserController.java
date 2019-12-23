@@ -6,8 +6,6 @@ import com.paynet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 /**
  * Created by Dev1 on 20.12.2019.
  */

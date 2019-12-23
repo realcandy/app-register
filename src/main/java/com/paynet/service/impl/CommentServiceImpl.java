@@ -2,7 +2,6 @@ package com.paynet.service.impl;
 
 import com.paynet.entity.Application;
 import com.paynet.entity.Comment;
-import com.paynet.repository.ApplicationRepository;
 import com.paynet.repository.CommentRepository;
 import com.paynet.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;

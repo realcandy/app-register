@@ -2,7 +2,6 @@ package com.paynet.configuration;
 
 import com.paynet.component.AuthenticationEntryPoint;
 import com.paynet.component.JwtRequestFilter;
-import com.paynet.service.impl.ApplicationUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
