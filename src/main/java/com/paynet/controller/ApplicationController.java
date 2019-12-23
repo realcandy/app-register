@@ -3,10 +3,13 @@ package com.paynet.controller;
 import com.paynet.entity.Application;
 import com.paynet.model.ApplicationRequest;
 import com.paynet.service.ApplicationService;
+import com.paynet.validator.ApplicationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -17,13 +20,18 @@ public class ApplicationController {
     @Autowired
     private ApplicationService applicationService;
 
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.setValidator(new ApplicationValidator());
+    }
+
     @RequestMapping(value = "/applications", method = RequestMethod.GET)
     public List<Application> getApplications(){
         return applicationService.getApplications();
     }
 
     @RequestMapping(value = "/applications", method = RequestMethod.POST)
-    public Application saveApplication(@RequestBody ApplicationRequest request){
+    public Application saveApplication(@RequestBody @Valid ApplicationRequest request){
         return applicationService.save(request.toApplication());
     }
 
