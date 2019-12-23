@@ -215,3 +215,4 @@ project.lock.json
 *.vscode/**
 .vs/config/applicationhost.config
 docs/*
+target/
